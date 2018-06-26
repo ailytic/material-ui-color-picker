@@ -23,17 +23,17 @@ const ColorPicker = ({
   floatingLabelText,
   label,
   TextFieldProps,
+  fullWidth,
 
   // State
   showPicker,
   setShowPicker,
   value,
   setValue,
-
-  ...props
 }) => (
     <div>
       <TextField
+        fullWidth={fullWidth}
         name={name}
         id={id}
         value={value}
@@ -46,7 +46,6 @@ const ColorPicker = ({
         }
         }
         InputProps={{ style: { color: value } }}
-        {...props}
       />
       {showPicker && (
         <PickerDialog
@@ -72,7 +71,8 @@ ColorPicker.propTypes = {
 }
 
 ColorPicker.defaultProps = {
-  convert: DEFAULT_CONVERTER
+  convert: DEFAULT_CONVERTER,
+  fullWidth: false,
 }
 
 const makeColorPicker = compose(

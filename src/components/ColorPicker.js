@@ -31,7 +31,7 @@ const ColorPicker = ({
   value,
   setValue,
 }) => (
-    <div>
+    <React.Fragment>
       <TextField
         fullWidth={fullWidth}
         name={name}
@@ -61,7 +61,7 @@ const ColorPicker = ({
           }}
         />
       )}
-    </div>
+    </React.Fragment>
   )
 
 ColorPicker.propTypes = {

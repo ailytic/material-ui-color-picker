@@ -1,9 +1,10 @@
 
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types';
 import compose from 'recompose/compose'
 import withState from 'recompose/withState'
 
-import TextField from 'material-ui/TextField'
+import TextField from '@material-ui/core/TextField'
 
 import { DEFAULT_CONVERTER, converters } from '../transformers'
 import PickerDialog from './PickerDialog'
@@ -29,37 +30,37 @@ const ColorPicker = ({
   value,
   setValue
 }) => (
-  <div>
-    <TextField
-      name={name}
-      id={id}
-      value={value}
-      label={floatingLabelText || label}
-      placeholder={hintText || placeholder}
-      onClick={() => setShowPicker(true)}
-      onChange={e => {
-        setValue(e.target.value)
-        onChange(e.target.value)
-        }
-      }
-      InputProps={{style: {color: value}}}
-    />
-    {showPicker && (
-      <PickerDialog
+    <div>
+      <TextField
+        name={name}
+        id={id}
         value={value}
-        onClick={() => {
-          setShowPicker(false)
-          onChange(value)
-        }}
-        onChange={c => {
-          const newValue = converters[convert](c)
-          setValue(newValue)
-          onChange(newValue)
-        }}
+        label={floatingLabelText || label}
+        placeholder={hintText || placeholder}
+        onClick={() => setShowPicker(true)}
+        onChange={e => {
+          setValue(e.target.value)
+          onChange(e.target.value)
+        }
+        }
+        InputProps={{ style: { color: value } }}
       />
-    )}
-  </div>
-)
+      {showPicker && (
+        <PickerDialog
+          value={value}
+          onClick={() => {
+            setShowPicker(false)
+            onChange(value)
+          }}
+          onChange={c => {
+            const newValue = converters[convert](c)
+            setValue(newValue)
+            onChange(newValue)
+          }}
+        />
+      )}
+    </div>
+  )
 
 ColorPicker.propTypes = {
   value: PropTypes.string,
